@@ -1,0 +1,16 @@
+version: '3.3'
+services:
+  nchan:
+    ports:
+      - "8081:80"
+    links:
+      - redis
+    volumes:
+      - ./nginx.vh.default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    image: "stasghost/nchan-docker"
+
+  redis:
+    image: "redis:3-alpine"
+    ports:
+      - "6379:6379"
